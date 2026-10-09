@@ -4,6 +4,8 @@ Build one FinOps Scope in seven steps, in your browser, then print it or save it
 
 **Use it:** https://cloud-cost.com/scope-builder
 
+![The Scope Builder at step 2 of 7, Business outcome: a field for the outcome, a triangle of Cost, Speed and Quality to choose the favoured corner from, and guidance beside them](screenshot.png)
+
 A Scope, in the FinOps Framework, is an area of technology spend that a business decides to manage together: what it covers, what the business wants from it, who takes part, which Capabilities it works on and how mature each has to be. This page walks through those questions for one Scope:
 
 1. **Why this Scope**: the question that started it, and the "why?" behind the question.
@@ -33,6 +35,7 @@ You do not have to take that on trust:
 | `scope-builder-file.js` | The rules, with no page in them: what a Scope holds, when a step counts as filled in, and the file that is saved |
 | `styles.css` | The stylesheet of `cloud-cost.com`, which the page is drawn with |
 | `sample.finops-scope-profile.json` | The file the page saves, for one sample Scope |
+| `screenshot.png` | The picture above |
 
 These are the files that `cloud-cost.com` serves. They are copied here when the page changes; the page is not developed in this repository.
 
