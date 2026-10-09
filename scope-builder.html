@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free FinOps Scope Builder, from cloud-cost.com</title>
+  <meta name="description" content="Build one FinOps Scope in seven steps, then print it or save it as a file. No sign-in, and nothing you type leaves the page.">
+  <link rel="canonical" href="https://cloud-cost.com/scope-builder">
+  <!-- What a link to this page shows when it is pasted into Slack, Teams or LinkedIn. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="cloud-cost.com">
+  <meta property="og:url" content="https://cloud-cost.com/scope-builder">
+  <meta property="og:title" content="Free FinOps Scope Builder, from cloud-cost.com">
+  <meta property="og:description" content="Build one FinOps Scope in seven steps, then print it or save it as a file. No sign-in, and nothing you type leaves the page.">
+  <meta property="og:image" content="https://cloud-cost.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="cloud-cost.com: FinOps practice management.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <meta name="color-scheme" content="light dark">
+  <link rel="preload" href="/fonts/ibm-plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fraunces-400-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/scope-builder.css">
+  <script type="module" src="/scope-builder.js"></script>
+</head>
+<body>
+  <!--
+    The free Scope Builder, at cloud-cost.com/scope-builder (ccfinx ADR-0059).
+
+    One Scope, in seven steps. It ends in a sheet to print and a file to save,
+    which ccfinx imports. It keeps nothing: no sign-in, no cookie, no storage,
+    and no request to any server. Close the tab and it is gone.
+
+    The wording of this page is all in this file, as on the other pages. Change
+    the text between the tags, keep the tags and their data- attributes, then
+    publish with:  npx wrangler deploy  (run in the cloud-cost.com folder).
+    The script (scope-builder.js) holds no wording: it reads every label from
+    this file. The look is in styles.css and scope-builder.css.
+
+    Whose words these are: the names of the seven steps, their one-line hints,
+    the guidance beside the fields and its examples are ccfinx's own wording,
+    written into this page (ADR-0059 Decision 3). A change to them in ccfinx
+    is a change to make here. The names of the Domains, Capabilities, Personas,
+    Technology Categories and maturity levels are the FinOps Framework's terms.
+    Every sentence written new for this page is marked
+    "new wording, 2026-10-09": search for it, rewrite the sentence, and delete
+    the mark.
+
+    The data-id of a button is a Framework id, and it is what the saved file
+    holds. Do not change one: ccfinx would no longer know it. ids.json in
+    ../scope-builder/ lists them, and a test fails when the two differ.
+  -->
+  <a class="skip" href="#builder">Skip to the Scope Builder</a>
+
+  <!-- The header and the footer are the same on every page: change them here, in index.html and in cc.html together. -->
+  <header class="top">
+    <div class="container top-row">
+      <a class="wordmark" href="/">cloud-cost.com</a>
+      <nav aria-label="Sections of the front page">
+        <a href="/#ccfinx">ccfinx</a>
+        <a href="/#agents">AI first</a>
+        <a href="/#how-it-runs">How it runs</a>
+        <a href="/scope-builder" aria-current="page">Scope Builder</a>
+        <a href="/#access">Request access</a>
+      </nav>
+      <a class="button small" href="https://ccfinx.cloud-cost.com/">Sign in</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ── The top of the page ──────────────────────────────────────────── -->
+    <section class="hero lead">
+      <div class="container hero-inner">
+        <div class="hero-copy sb-intro">
+          <p class="eyebrow">Free tool <span class="pill">No sign-in</span></p>
+          <!-- new wording, 2026-10-09 -->
+          <h1 class="display">Build one FinOps Scope, from the first question to the printed sheet.</h1>
+          <!-- new wording, 2026-10-09 -->
+          <p class="lede">
+            Seven steps: why the Scope exists, what the business wants from it, what it covers, who takes part,
+            which Capabilities it works on and how mature each has to be. Then print the sheet, or save the file.
+          </p>
+          <!-- new wording, 2026-10-09 -->
+          <p class="lede">
+            <strong>Nothing you type leaves this page.</strong> It runs in your browser, keeps nothing, and is
+            gone when you close the tab.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── The builder ──────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="surface panel sb" id="builder">
+
+          <noscript>
+            <!-- new wording, 2026-10-09 -->
+            <p class="copy">The Scope Builder needs JavaScript, which is switched off in this browser. The script is this site's own, and it sends nothing anywhere.</p>
+          </noscript>
+
+          <!-- The seven steps. Any step can be opened at any time: every field is optional. -->
+          <nav class="sb-rail" aria-label="Scope Builder steps">
+            <ol>
+              <li><button type="button" class="sb-step-button" data-goto="why"><span class="sb-n">1</span><span class="sb-step-label">Why this Scope</span><span class="sb-done" hidden>, done</span></button></li>
+              <li><button type="button" class="sb-step-button" data-goto="outcome"><span class="sb-n">2</span><span class="sb-step-label">Business outcome</span><span class="sb-done" hidden>, done</span></button></li>
+              <li><button type="button" class="sb-step-button" data-goto="technology"><span class="sb-n">3</span><span class="sb-step-label">Technology</span><span class="sb-done" hidden>, done</span></button></li>
+              <li><button type="button" class="sb-step-button" data-goto="personas"><span class="sb-n">4</span><span class="sb-step-label">Personas</span><span class="sb-done" hidden>, done</span></button></li>
+              <li><button type="button" class="sb-step-button" data-goto="capabilities"><span class="sb-n">5</span><span class="sb-step-label">Capabilities</span><span class="sb-done" hidden>, done</span></button></li>
+              <li><button type="button" class="sb-step-button" data-goto="maturity"><span class="sb-n">6</span><span class="sb-step-label">Maturity and cadence</span><span class="sb-done" hidden>, done</span></button></li>
+              <li><button type="button" class="sb-step-button" data-goto="review"><span class="sb-n">7</span><span class="sb-step-label">Review</span></button></li>
+            </ol>
+            <p class="sb-meter"><span data-out="stepsDone">0</span> of 6 steps filled in</p>
+          </nav>
+
+          <div class="sb-stage">
+
+            <!-- ── Step 1 ─────────────────────────────────────────────── -->
+            <section class="sb-step" data-step="why" aria-labelledby="sb-why-title">
+              <p class="eyebrow">Step 1 of 7</p>
+              <h2 class="title" id="sb-why-title" tabindex="-1">Why this Scope</h2>
+              <p class="copy">Write the question that started this Scope, then ask "why?" until you reach what the business really wants.</p>
+              <div class="sb-cols">
+                <div class="sb-fields">
+                  <label class="sb-field">
+                    <span class="sb-label">Scope name</span>
+                    <input type="text" data-field="name" maxlength="120" autocomplete="off" placeholder="e.g. AI services spend">
+                  </label>
+                  <label class="sb-field">
+                    <span class="sb-label">Trigger question</span>
+                    <textarea data-field="triggerQuestion" rows="2" placeholder="e.g. What are we spending on AI, and is it worth it?"></textarea>
+                  </label>
+                  <fieldset class="sb-field sb-whys">
+                    <legend class="sb-label">Five-Whys</legend>
+                    <label><span class="sb-why-n">Why? 1</span><input type="text" data-why="0" autocomplete="off" placeholder="e.g. Because nobody can say which product each model serves"></label>
+                    <label><span class="sb-why-n">Why? 2</span><input type="text" data-why="1" autocomplete="off"></label>
+                    <label><span class="sb-why-n">Why? 3</span><input type="text" data-why="2" autocomplete="off"></label>
+                    <label><span class="sb-why-n">Why? 4</span><input type="text" data-why="3" autocomplete="off"></label>
+                    <label><span class="sb-why-n">Why? 5</span><input type="text" data-why="4" autocomplete="off"></label>
+                  </fieldset>
+                </div>
+                <aside class="sb-guide" aria-label="Guidance for this step">
+                  <p class="eyebrow">Scope Profile</p>
+                  <p>Name the area of spend this Scope is about, and say why it needs attention now. A Scope is a decision the business has to make, so do not define it alone: agree it with the leaders whose goals it serves.</p>
+                  <p class="sb-credit">Follows the FinOps Framework's guidance on Scopes.</p>
+                </aside>
+              </div>
+            </section>
+
+            <!-- ── Step 2 ─────────────────────────────────────────────── -->
+            <section class="sb-step" data-step="outcome" aria-labelledby="sb-outcome-title" hidden>
+              <p class="eyebrow">Step 2 of 7</p>
+              <h2 class="title" id="sb-outcome-title" tabindex="-1">Business outcome</h2>
+              <p class="copy">Say what success looks like for this Scope, in words the business would use.</p>
+              <div class="sb-cols">
+                <div class="sb-fields">
+                  <label class="sb-field">
+                    <span class="sb-label">Business outcome</span>
+                    <textarea data-field="businessOutcome" rows="4" placeholder="e.g. Every product team sees its AI cost per customer each month, and leadership can decide where to invest"></textarea>
+                  </label>
+
+                  <!-- The trade-off every Scope makes: one corner is favoured, or none is chosen. -->
+                  <div class="sb-field sb-corners" role="group" aria-labelledby="sb-corner-label">
+                    <p class="sb-label" id="sb-corner-label">Favoured corner</p>
+                    <div class="sb-triangle">
+                      <svg viewBox="0 0 200 174" aria-hidden="true" focusable="false">
+                        <polygon class="sb-triangle-shape" points="100,12 188,162 12,162"></polygon>
+                      </svg>
+                      <button type="button" class="sb-corner at-top" data-corner="cost" aria-pressed="false">Cost</button>
+                      <button type="button" class="sb-corner at-left" data-corner="speed" aria-pressed="false">Speed</button>
+                      <button type="button" class="sb-corner at-right" data-corner="quality" aria-pressed="false">Quality</button>
+                    </div>
+                    <p class="sb-corner-says" data-corner-says="">Which corner does this Scope favour? Choose it here, and say why in the business outcome.</p>
+                    <p class="sb-corner-says" data-corner-says="cost" hidden>This Scope favours cost: it accepts less speed or less quality to spend less.</p>
+                    <p class="sb-corner-says" data-corner-says="speed" hidden>This Scope favours speed: it accepts more cost or less quality to get there sooner.</p>
+                    <p class="sb-corner-says" data-corner-says="quality" hidden>This Scope favours quality: it accepts more cost or less speed to get a better result.</p>
+                    <p class="sb-fine" data-corner-chosen hidden>Choose the same corner again to clear it.</p>
+                  </div>
+                </div>
+                <aside class="sb-guide" aria-label="Guidance for this step">
+                  <p class="eyebrow">Business Strategies</p>
+                  <p>Write down what the business has already decided that bears on this Scope, and what it is willing to trade for what. Those decisions tell you which questions to ask, who has to agree, and which Capabilities come first.</p>
+                  <p class="sb-example">Example</p>
+                  <ul>
+                    <li>Gross margin has to improve this year</li>
+                    <li>New regions launch before their costs are tuned</li>
+                    <li>Each product team answers for its own cloud bill</li>
+                  </ul>
+                  <p class="sb-credit">Follows the FinOps Framework's guidance on Scopes.</p>
+                </aside>
+              </div>
+            </section>
+
+            <!-- ── Step 3 ─────────────────────────────────────────────── -->
+            <section class="sb-step" data-step="technology" aria-labelledby="sb-technology-title" hidden>
+              <p class="eyebrow">Step 3 of 7</p>
+              <h2 class="title" id="sb-technology-title" tabindex="-1">Technology</h2>
+              <p class="copy">Pick the Technology Categories this Scope covers.</p>
+              <div class="sb-cols">
+                <div class="sb-fields">
+                  <div class="sb-field" role="group" aria-labelledby="sb-categories-label">
+                    <p class="sb-label" id="sb-categories-label">Technology Categories</p>
+                    <div class="sb-options">
+                      <button type="button" class="sb-option" data-list="technologyCategoryIds" data-id="public-cloud" aria-pressed="false">Public Cloud</button>
+                      <button type="button" class="sb-option" data-list="technologyCategoryIds" data-id="saas" aria-pressed="false">SaaS</button>
+                      <button type="button" class="sb-option" data-list="technologyCategoryIds" data-id="data-center" aria-pressed="false">Data Center</button>
+                      <button type="button" class="sb-option" data-list="technologyCategoryIds" data-id="data-cloud-platforms" aria-pressed="false">Data Cloud Platforms</button>
+                      <button type="button" class="sb-option" data-list="technologyCategoryIds" data-id="ai-services" aria-pressed="false">AI Services</button>
+                      <button type="button" class="sb-option" data-list="technologyCategoryIds" data-id="licensing" aria-pressed="false">Licensing</button>
+                    </div>
+                    <!-- new wording, 2026-10-09 -->
+                    <p class="sb-fine">Named accounts and the technology strategy go in the notes, on the last step.</p>
+                  </div>
+                </div>
+                <aside class="sb-guide" aria-label="Guidance for this step">
+                  <p class="eyebrow">Technology Strategies</p>
+                  <p>Write down how this work is built and run: where it is hosted, and what is bought rather than built. That decides which sources of spend belong in the Scope and which Capabilities it will need.</p>
+                  <p class="sb-example">Example</p>
+                  <ul>
+                    <li>New work goes to public cloud; the data centre is being run down</li>
+                    <li>Managed services before self-run ones</li>
+                    <li>One shared container platform for every product team</li>
+                  </ul>
+                  <p class="eyebrow sb-second">Infrastructure Included</p>
+                  <p>List every source of spend the Scope covers, in every Technology Category: public cloud, SaaS, data centre, licences and the rest. Be specific enough that someone else could find the bills.</p>
+                  <p class="sb-example">Example</p>
+                  <ul>
+                    <li>The production and analytics accounts in AWS</li>
+                    <li>The data warehouse subscription</li>
+                    <li>The colocation contract, until it ends</li>
+                  </ul>
+                  <p class="sb-credit">Follows the FinOps Framework's guidance on Scopes.</p>
+                </aside>
+              </div>
+            </section>
+
+            <!-- ── Step 4 ─────────────────────────────────────────────── -->
+            <section class="sb-step" data-step="personas" aria-labelledby="sb-personas-title" hidden>
+              <p class="eyebrow">Step 4 of 7</p>
+              <h2 class="title" id="sb-personas-title" tabindex="-1">Personas</h2>
+              <p class="copy">Pick the Personas who take part in this Scope.</p>
+              <div class="sb-cols">
+                <div class="sb-fields">
+                  <div class="sb-field" role="group" aria-labelledby="sb-core-label">
+                    <p class="sb-label" id="sb-core-label">Core</p>
+                    <div class="sb-options">
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="finops" aria-pressed="false">FinOps Practitioner</button>
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="engineering" aria-pressed="false">Engineering</button>
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="finance" aria-pressed="false">Finance</button>
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="leadership" aria-pressed="false">Leadership</button>
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="product" aria-pressed="false">Product</button>
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="procurement" aria-pressed="false">Procurement</button>
+                    </div>
+                  </div>
+                  <div class="sb-field" role="group" aria-labelledby="sb-allied-label">
+                    <p class="sb-label" id="sb-allied-label">Allied</p>
+                    <div class="sb-options">
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="itam" aria-pressed="false">ITAM</button>
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="itfm" aria-pressed="false">ITFM</button>
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="itsm" aria-pressed="false">ITSM</button>
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="security" aria-pressed="false">Security</button>
+                      <button type="button" class="sb-option" data-list="personaIds" data-id="sustainability" aria-pressed="false">Sustainability</button>
+                    </div>
+                  </div>
+                </div>
+                <aside class="sb-guide" aria-label="Guidance for this step">
+                  <p class="eyebrow">Personas</p>
+                  <p>Choose the Personas who take part in this Scope. Core Personas belong to every FinOps practice; Allied Personas join where their own discipline meets the work.</p>
+                  <p class="sb-credit">Follows the FinOps Framework's guidance on Scopes.</p>
+                </aside>
+              </div>
+            </section>
+
+            <!-- ── Step 5 ─────────────────────────────────────────────── -->
+            <section class="sb-step" data-step="capabilities" aria-labelledby="sb-capabilities-title" hidden>
+              <p class="eyebrow">Step 5 of 7</p>
+              <h2 class="title" id="sb-capabilities-title" tabindex="-1">Capabilities</h2>
+              <p class="copy">Pick the Capabilities this Scope will work on. Each one you pick gets a maturity target in the next step.</p>
+              <aside class="sb-guide across" aria-label="Guidance for this step">
+                <p class="eyebrow">Capabilities</p>
+                <p>Choose the Capabilities this Scope will work on. Let the business and technology decisions above, and the Personas involved, set the order. A Scope rarely needs all of them at once.</p>
+              </aside>
+
+              <!-- The three Domains side by side, and the Capabilities that manage the practice beneath them. -->
+              <div class="sb-board">
+                <div class="sb-domain" role="group" aria-labelledby="sb-d-understand">
+                  <h3 class="sb-domain-name" id="sb-d-understand">Understand Usage &amp; Cost</h3>
+                  <button type="button" class="sb-option" data-capability="data-ingestion" aria-pressed="false">Data Ingestion</button>
+                  <button type="button" class="sb-option" data-capability="allocation" aria-pressed="false">Allocation</button>
+                  <button type="button" class="sb-option" data-capability="reporting-analytics" aria-pressed="false">Reporting &amp; Analytics</button>
+                  <button type="button" class="sb-option" data-capability="anomaly-management" aria-pressed="false">Anomaly Management</button>
+                </div>
+                <div class="sb-domain" role="group" aria-labelledby="sb-d-quantify">
+                  <h3 class="sb-domain-name" id="sb-d-quantify">Quantify Business Value</h3>
+                  <button type="button" class="sb-option" data-capability="planning-estimating" aria-pressed="false">Planning &amp; Estimating</button>
+                  <button type="button" class="sb-option" data-capability="forecasting" aria-pressed="false">Forecasting</button>
+                  <button type="button" class="sb-option" data-capability="budgeting" aria-pressed="false">Budgeting</button>
+                  <button type="button" class="sb-option" data-capability="kpis-benchmarking" aria-pressed="false">KPIs &amp; Benchmarking</button>
+                  <button type="button" class="sb-option" data-capability="unit-economics" aria-pressed="false">Unit Economics</button>
+                </div>
+                <div class="sb-domain" role="group" aria-labelledby="sb-d-optimize">
+                  <h3 class="sb-domain-name" id="sb-d-optimize">Optimize Usage &amp; Cost</h3>
+                  <button type="button" class="sb-option" data-capability="architecting-workload" aria-pressed="false">Architecting &amp; Workload Placement</button>
+                  <button type="button" class="sb-option" data-capability="usage-optimization" aria-pressed="false">Usage Optimization</button>
+                  <button type="button" class="sb-option" data-capability="rate-optimization" aria-pressed="false">Rate Optimization</button>
+                  <button type="button" class="sb-option" data-capability="licensing-saas" aria-pressed="false">Licensing &amp; SaaS</button>
+                  <button type="button" class="sb-option" data-capability="sustainability" aria-pressed="false">Sustainability</button>
+                </div>
+                <div class="sb-domain manage" role="group" aria-labelledby="sb-d-manage">
+                  <h3 class="sb-domain-name" id="sb-d-manage">Manage the FinOps Practice</h3>
+                  <button type="button" class="sb-option" data-capability="exec-strategy" aria-pressed="false">Executive Strategy Alignment</button>
+                  <button type="button" class="sb-option" data-capability="finops-practice-ops" aria-pressed="false">FinOps Practice Operations</button>
+                  <button type="button" class="sb-option" data-capability="governance-policy" aria-pressed="false">Governance, Policy &amp; Risk</button>
+                  <button type="button" class="sb-option" data-capability="finops-education" aria-pressed="false">FinOps Education &amp; Enablement</button>
+                  <button type="button" class="sb-option" data-capability="invoicing-chargeback" aria-pressed="false">Invoicing &amp; Chargeback</button>
+                  <button type="button" class="sb-option" data-capability="finops-assessment" aria-pressed="false">FinOps Assessment</button>
+                  <button type="button" class="sb-option" data-capability="automation-tools" aria-pressed="false">Automation, Tools &amp; Services</button>
+                  <button type="button" class="sb-option" data-capability="intersecting" aria-pressed="false">Intersecting Disciplines</button>
+                </div>
+              </div>
+              <p class="sb-credit">
+                Domains, Capabilities and Personas: FinOps Foundation Framework, 2026 poster.
+                <a href="https://www.finops.org/framework/" rel="noopener noreferrer">finops.org/framework</a>
+                · Licensed <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer">CC BY 4.0</a>.
+              </p>
+            </section>
+
+            <!-- ── Step 6 ─────────────────────────────────────────────── -->
+            <section class="sb-step" data-step="maturity" aria-labelledby="sb-maturity-title" hidden>
+              <p class="eyebrow">Step 6 of 7</p>
+              <h2 class="title" id="sb-maturity-title" tabindex="-1">Maturity and cadence</h2>
+              <p class="copy">Rate each chosen Capability as it is today, set where it should get to, and say how often the Scope is reviewed.</p>
+              <div class="sb-cols">
+                <div class="sb-fields">
+                  <div class="sb-field">
+                    <p class="sb-label">Maturity of each chosen Capability</p>
+                    <!-- new wording, 2026-10-09 -->
+                    <p class="sb-fine" data-when="no-capabilities">No Capability is chosen yet. Choose them in step 5, and each one gets a row here.</p>
+                    <!-- One row for each chosen Capability is put here, made from the template below. -->
+                    <div class="sb-maturity" data-out="maturity"></div>
+                  </div>
+                  <label class="sb-field">
+                    <span class="sb-label">Review cadence</span>
+                    <textarea data-field="cadence" rows="2" placeholder="e.g. Weekly with engineering; monthly with finance"></textarea>
+                  </label>
+                </div>
+                <aside class="sb-guide" aria-label="Guidance for this step">
+                  <p class="eyebrow">Cadence &amp; Maturity</p>
+                  <p>Say how often the Scope is reviewed and with whom, and how mature each chosen Capability has to be. A new Scope usually starts at Crawl: get the information flowing first, then raise the target where it pays.</p>
+                  <p class="sb-example">Example</p>
+                  <ul>
+                    <li>Every two weeks with the platform team; each quarter with finance</li>
+                    <li>Allocation at Walk by the end of the year</li>
+                    <li>Start with Allocation and Reporting &amp; Analytics</li>
+                  </ul>
+                  <p class="sb-credit">Follows the FinOps Framework's guidance on Scopes.</p>
+                </aside>
+              </div>
+            </section>
+
+            <!-- ── Step 7 ─────────────────────────────────────────────── -->
+            <section class="sb-step" data-step="review" aria-labelledby="sb-review-title" hidden>
+              <p class="eyebrow">Step 7 of 7</p>
+              <h2 class="title" id="sb-review-title" tabindex="-1">Review</h2>
+              <!-- new wording, 2026-10-09 -->
+              <p class="copy">Check the sheet, add any notes, then print it or save the file.</p>
+
+              <!-- The sheet: what is printed. The script fills each data-out from the steps above. -->
+              <article class="sb-sheet" aria-labelledby="sb-sheet-name">
+                <header class="sb-sheet-head">
+                  <p class="eyebrow">FinOps Scope</p>
+                  <h3 class="sb-sheet-name" id="sb-sheet-name" data-out="name" data-empty="Untitled Scope"></h3>
+                  <!-- new wording, 2026-10-09 -->
+                  <p class="sb-sheet-made">Made with the free Scope Builder at cloud-cost.com · <span data-out="date"></span></p>
+                </header>
+                <div class="sb-sheet-grid">
+                  <section class="sb-card"><h4>Trigger question</h4><p class="sb-pre" data-out="triggerQuestion" data-empty="Not set"></p></section>
+                  <section class="sb-card"><h4>Five-Whys</h4><ol data-out="whyChain" data-empty="Not set"></ol></section>
+                  <section class="sb-card"><h4>Business outcome</h4><p class="sb-pre" data-out="businessOutcome" data-empty="Not set"></p></section>
+                  <section class="sb-card"><h4>Favoured corner</h4><p data-out="tradeoff" data-empty="None is chosen"></p></section>
+                  <section class="sb-card"><h4>Technology Categories</h4><ul class="sb-tags" data-out="technologyCategoryIds" data-empty="Not set"></ul></section>
+                  <section class="sb-card"><h4>Personas</h4><ul class="sb-tags" data-out="personaIds" data-empty="Not set"></ul></section>
+                  <section class="sb-card across">
+                    <h4>Capabilities and maturity</h4>
+                    <p class="sb-unset" data-when="no-capabilities">Not set</p>
+                    <table class="sb-table" data-when="capabilities">
+                      <thead><tr><th scope="col">Capability</th><th scope="col">Domain</th><th scope="col">Today</th><th scope="col">Target</th></tr></thead>
+                      <tbody data-out="capabilities"></tbody>
+                    </table>
+                  </section>
+                  <section class="sb-card across"><h4>Review cadence</h4><p class="sb-pre" data-out="cadence" data-empty="Not set"></p></section>
+                  <section class="sb-card across breakable"><h4>Notes</h4><p class="sb-pre" data-out="notes" data-empty="Not set"></p></section>
+                </div>
+                <footer class="sb-sheet-foot">
+                  <p>Follows the FinOps Framework's guidance on Scopes. Domains, Capabilities and Personas: FinOps Foundation Framework, 2026 poster, finops.org/framework, licensed CC BY 4.0.</p>
+                </footer>
+              </article>
+
+              <label class="sb-field sb-notes">
+                <span class="sb-label">Notes</span>
+                <textarea data-field="notes" rows="4" placeholder="e.g. Named accounts, the technology strategy, anything the fields above do not hold"></textarea>
+              </label>
+
+              <div class="sb-actions">
+                <button type="button" class="button" data-do="save">Save the file</button>
+                <button type="button" class="button quiet" data-do="print">Print the sheet</button>
+              </div>
+              <!-- new wording, 2026-10-09 -->
+              <p class="sb-fine">
+                The file is saved to your computer as <code>finops-scope-profile.json</code>, and nothing is sent anywhere.
+                ccfinx opens it on its New Scope page, so what you made here comes with you.
+              </p>
+              <!-- new wording, 2026-10-09 -->
+              <p class="sb-saved" role="status" data-when="saved" hidden>Saved. The file is on your computer, in the folder your browser saves to.</p>
+            </section>
+          </div>
+
+          <!-- Back and Next, under every step. -->
+          <div class="sb-foot">
+            <button type="button" class="button quiet" data-do="back">Back</button>
+            <button type="button" class="button" data-do="next">Next</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── One line about ccfinx, and the way to ask for access ──────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="surface also">
+          <p class="eyebrow">More than one Scope</p>
+          <!-- new wording, 2026-10-09 -->
+          <p class="also-line">
+            This page builds one Scope and keeps nothing. <strong>ccfinx</strong> keeps every Scope beside the others,
+            with the Goals, Wins and Initiatives that follow from them.
+            <a href="/#access">Request access</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container foot-row">
+      <span>&copy; 2026 Delta Clarity LLC</span>
+      <span>Contact: <!--email_off--><a href="mailto:info@cloud-cost.com">info@cloud-cost.com</a><!--/email_off--></span>
+      <a href="https://ccfinx.cloud-cost.com/">Sign in to ccfinx</a>
+    </div>
+  </footer>
+
+  <!-- A row of the maturity step, one for each chosen Capability. The script copies it and fills in the name. -->
+  <template id="sb-maturity-row">
+    <div class="sb-maturity-row">
+      <p class="sb-maturity-name" data-part="name"></p>
+      <div class="sb-levels" role="group">
+        <span class="sb-levels-label" data-part="today">Today</span>
+        <button type="button" class="sb-level" data-which="current" data-level="crawl" aria-pressed="false">Crawl</button>
+        <button type="button" class="sb-level" data-which="current" data-level="walk" aria-pressed="false">Walk</button>
+        <button type="button" class="sb-level" data-which="current" data-level="run" aria-pressed="false">Run</button>
+      </div>
+      <div class="sb-levels" role="group">
+        <span class="sb-levels-label" data-part="target">Target</span>
+        <button type="button" class="sb-level" data-which="target" data-level="crawl" aria-pressed="false">Crawl</button>
+        <button type="button" class="sb-level" data-which="target" data-level="walk" aria-pressed="false">Walk</button>
+        <button type="button" class="sb-level" data-which="target" data-level="run" aria-pressed="false">Run</button>
+      </div>
+    </div>
+  </template>
+
+  <!-- What the sheet says where a Capability has no rating for today. -->
+  <template id="sb-not-rated">Not rated</template>
+</body>
+</html>

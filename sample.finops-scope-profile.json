@@ -1,0 +1,52 @@
+{
+  "formatVersion": 2,
+  "madeWith": "cloud-cost.com/scope-builder",
+  "exportedAt": "2026-10-09T12:00:00.000Z",
+  "scopeProfile": "AI services spend",
+  "triggerQuestion": "What are we spending on AI, and is it worth it?",
+  "whyChain": [
+    "Because nobody can say which product each model serves",
+    "Because the model accounts are shared by every team",
+    "Because leadership wants a cost per customer"
+  ],
+  "businessOutcome": "Every product team sees its AI cost per customer each month, and leadership can decide where to invest.",
+  "tradeoff": "speed",
+  "technologyCategoryIds": [
+    "public-cloud",
+    "ai-services"
+  ],
+  "personaIds": [
+    "finops",
+    "engineering",
+    "finance",
+    "sustainability"
+  ],
+  "capabilityIds": [
+    "unit-economics",
+    "allocation",
+    "reporting-analytics",
+    "sustainability"
+  ],
+  "maturityTargets": [
+    {
+      "capabilityId": "unit-economics",
+      "target": "run"
+    },
+    {
+      "capabilityId": "allocation",
+      "current": "crawl",
+      "target": "walk"
+    },
+    {
+      "capabilityId": "reporting-analytics",
+      "current": "crawl",
+      "target": "crawl"
+    },
+    {
+      "capabilityId": "sustainability",
+      "target": "crawl"
+    }
+  ],
+  "cadence": "Every two weeks with the platform team; each quarter with finance",
+  "notes": "The production and analytics accounts in AWS.\nThe model provider contract, renewed in March."
+}
